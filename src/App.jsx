@@ -1,11 +1,24 @@
 import { useState, useContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { GlobalProvider } from "./Context/context";
+import Homepage from "./pages/Homepage";
+import TravelDetail from "./pages/TravelDetail";
+import DefaultLayout from "./layout/DefaultLayout";
 
 function App() {
   return (
     <>
-      <GlobalProvider></GlobalProvider>
+      <GlobalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route Component={DefaultLayout}>
+              <Route path="/" Component={Homepage} />
+              <Route path="/:id" Component={TravelDetail} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </GlobalProvider>
     </>
   );
 }

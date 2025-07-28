@@ -13,6 +13,12 @@ function GlobalProvider({ children }) {
       .then((data) => setAllDestinations(data))
       .catch((err) => console.error(err));
   }, []);
+
+  return (
+    <GlobalContext.Provider value={{ allDestinations, setAllDestinations }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 }
 
 export { GlobalContext, GlobalProvider };
