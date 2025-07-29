@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Card from "../components/Card";
 
 export default function Homepage() {
   const [query, setQuery] = useState("");
@@ -66,6 +67,10 @@ export default function Homepage() {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="cardContainer container">
+        <Card />
       </div>
     </>
   );

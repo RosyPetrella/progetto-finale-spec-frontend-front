@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route Component={DefaultLayout}>
               <Route path="/" Component={Homepage} />
-              <Route path="/:id" Component={TravelDetail} />
+              <Route path="/destinations/:id" Component={TravelDetail} />
             </Route>
           </Routes>
         </BrowserRouter>

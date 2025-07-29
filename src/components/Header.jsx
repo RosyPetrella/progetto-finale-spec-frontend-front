@@ -8,7 +8,7 @@ export default function Header() {
             <img src="/images/logo.png" className="headerLogo" alt="logo" />
           </Link>
           <h3>Destinations</h3>
-          <h3>Chi siamo</h3>
+          <h3>Our company</h3>
           <h3>Favourites</h3>
         </div>
       </header>

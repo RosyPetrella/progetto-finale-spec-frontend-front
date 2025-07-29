@@ -8,9 +8,13 @@ function GlobalProvider({ children }) {
 
   //fetch
   useEffect(() => {
-    fetch(`http://localhost:3001/destinations`)
+    fetch("http://localhost:3001/destinations")
       .then((res) => res.json())
-      .then((data) => setAllDestinations(data))
+      .then((data) => {
+        console.log("Dati fetchati:", data);
+        setAllDestinations(data);
+      })
+
       .catch((err) => console.error(err));
   }, []);
 
