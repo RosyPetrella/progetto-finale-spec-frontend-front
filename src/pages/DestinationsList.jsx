@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, use } from "react";
+import { useState, useContext } from "react";
 import React from "react";
 import Card from "../components/Card";
 import { GlobalContext } from "../Context/context";
@@ -6,12 +6,10 @@ import { GlobalContext } from "../Context/context";
 export default function DestinationsList() {
   const { allDestinations } = useContext(GlobalContext);
   const [query, setQuery] = useState("");
-  const [destinations, setDestinations] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [category, setCategory] = useState("");
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [sortField, setSortField] = useState("title");
 
   const toggleSortDropDown = () => setIsSortOpen((prev) => !prev);
   const toggleCategoryDropDown = () => setIsCategoryOpen((prev) => !prev);
@@ -19,23 +17,55 @@ export default function DestinationsList() {
   const handleSearch = (e) => {
     setQuery(e.target.value);
   };
-  const handleSort = () => {
-    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  const handleSort = (order) => {
+    setSortOrder(order);
+    setIsSortOpen(false);
   };
+
   const filteredDestinations = React.useMemo(() => {
     if (!allDestinations || !Array.isArray(allDestinations)) return [];
-    if (!query) return allDestinations;
 
-    const searchTerm = query.toLowerCase().trim();
-    return allDestinations.filter(
-      (d) =>
-        d.title.toLowerCase().includes(searchTerm) ||
-        d.category.toLowerCase().includes(searchTerm)
-    );
-  }, [allDestinations, query]);
+    let filtered = allDestinations.filter((d) => {
+      if (!query && !category) return true;
+
+      if (query) {
+        const searchTerm = query.toLowerCase().trim();
+        if (!d.title.toLowerCase().includes(searchTerm)) return false;
+      }
+
+      if (category && d.category !== category) return false;
+
+      return true;
+    });
+
+    return filtered.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    });
+  }, [allDestinations, query, category, sortOrder]);
 
   if (!allDestinations) return <div>Loading...</div>;
 
+  //estraggo ogni categoria per evitare che ci siano duplicati
+  const uniqueCategories = React.useMemo(() => {
+    if (!allDestinations) return [];
+
+    const categories = [];
+    allDestinations.forEach((d) => {
+      if (!categories.includes(d.category)) {
+        categories.push(d.category);
+      }
+    });
+    return categories;
+  }, [allDestinations]);
+
+  const handleCategory = (selectedCategory) => {
+    setCategory(selectedCategory);
+    setIsCategoryOpen(false);
+  };
   return (
     <>
       <div className="container d-flex  mt-2">
@@ -56,11 +86,28 @@ export default function DestinationsList() {
               className="btn btn-secondary dropdown-toggle"
               onClick={toggleCategoryDropDown}
             >
-              Categoria
+              Category
             </button>
             {isCategoryOpen && (
               <ul className={`dropdown-menu ${isCategoryOpen ? "show" : ""}`}>
-                <li>##CATEGORIA</li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleCategory("")}
+                  >
+                    All categories
+                  </button>
+                </li>
+                {uniqueCategories.map((c) => (
+                  <li key={c}>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => handleCategory(c)}
+                    >
+                      {c}
+                    </button>
+                  </li>
+                ))}
               </ul>
             )}
           </div>
@@ -77,12 +124,20 @@ export default function DestinationsList() {
             {isSortOpen && (
               <ul className={`dropdown-menu ${isSortOpen ? "show" : ""}`}>
                 <li>
-                  <button className="dropdown-item" onClick={handleSort}>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSort("asc")}
+                  >
                     A-Z
                   </button>
                 </li>
                 <li>
-                  <button className="dropdown-item">Z-A</button>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSort("desc")}
+                  >
+                    Z-A
+                  </button>
                 </li>
               </ul>
             )}
