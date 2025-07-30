@@ -5,6 +5,7 @@ const GlobalContext = createContext();
 function GlobalProvider({ children }) {
   //state
   const [allDestinations, setAllDestinations] = useState([]);
+  const [compareDestinations, setCompareDestinations] = useState([]);
 
   //fetch
   useEffect(() => {
@@ -18,8 +19,29 @@ function GlobalProvider({ children }) {
       .catch((err) => console.error(err));
   }, []);
 
+  const handleCompare = (destination) => {
+    setCompareDestinations((prev) => {
+      // Se la destinazione è già presente, la rimuovo
+      if (prev.find((d) => d.id === destination.id)) {
+        return prev.filter((d) => d.id !== destination.id);
+      }
+      // Se ci sono già 2 destinazioni, non aggiungiamo
+      if (prev.length >= 2) return prev;
+      // Altrimenti aggiungiamo la destinazione
+      return [...prev, destination];
+    });
+  };
+
   return (
-    <GlobalContext.Provider value={{ allDestinations, setAllDestinations }}>
+    <GlobalContext.Provider
+      value={{
+        allDestinations,
+        setAllDestinations,
+        compareDestinations,
+        setCompareDestinations,
+        handleCompare,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );

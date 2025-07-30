@@ -6,6 +6,7 @@ export default function TravelDetail() {
   const { id } = useParams();
   const [destination, setDestination] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { handleCompare, compareDestinations } = useContext(GlobalContext);
 
   useEffect(() => {
     const fetchDestination = async () => {
@@ -27,6 +28,8 @@ export default function TravelDetail() {
 
   if (isLoading) return <p>Caricamento in corso...</p>;
   if (!destination) return <p>Destinazione non trovata</p>;
+
+  const isSelected = compareDestinations.find((d) => d.id === destination.id);
   return (
     <>
       <div className="container">
@@ -45,6 +48,14 @@ export default function TravelDetail() {
             <span>{destination.accommodation}</span>
             <span>{destination.price}</span>
             <p>{destination.description}</p>
+            <button
+              className={`btn ${
+                isSelected ? "btn-danger" : "btn-success"
+              } mt-3`}
+              onClick={() => handleCompare(destination)}
+            >
+              {isSelected ? "Remove compare" : "Compare"}
+            </button>
           </div>
         </div>
       </div>

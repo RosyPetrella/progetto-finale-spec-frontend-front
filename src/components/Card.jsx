@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { GlobalContext } from "../Context/context";
 import { Link } from "react-router-dom";
 export default function Card({ destination }) {
-  const { allDestinations } = useContext(GlobalContext);
+  const { handleCompare, compareDestinations } = useContext(GlobalContext);
 
+  const isSelected = compareDestinations.find((d) => d.id === destination.id);
   return (
     <>
       <div className="card m-3">
@@ -17,6 +18,12 @@ export default function Card({ destination }) {
           >
             Show details
           </Link>
+          <button
+            className={`btn ${isSelected ? "btn-danger" : "btn-success"}`}
+            onClick={() => handleCompare(destination)}
+          >
+            {isSelected ? "Remove Compare" : "Compare"}
+          </button>
         </div>
       </div>
     </>

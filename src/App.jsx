@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import TravelDetail from "./pages/TravelDetail";
 import DefaultLayout from "./layout/DefaultLayout";
 import DestinationsList from "./pages/DestinationsList";
+import Comparator from "./components/Comparator";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/" Component={Homepage} />
               <Route path="/destinationsList" Component={DestinationsList} />
               <Route path="/destinations/:id" Component={TravelDetail} />
+              <Route path="/comparator" Component={Comparator} />
             </Route>
           </Routes>
         </BrowserRouter>
