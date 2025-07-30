@@ -7,7 +7,10 @@ export default function Header() {
           <Link to={"/"}>
             <img src="/images/logo.png" className="headerLogo" alt="logo" />
           </Link>
-          <h3>Destinations</h3>
+          <Link to={"/destinationsList"}>
+            <h3>Destinations</h3>
+          </Link>
+
           <h3>Our company</h3>
           <h3>Favourites</h3>
         </div>

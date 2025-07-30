@@ -30,18 +30,22 @@ export default function TravelDetail() {
   return (
     <>
       <div className="container">
-        <div className="detailCard">
-          <img
-            className="detailImage"
-            src={destination.image}
-            alt={destination.title}
-          />
-          <h2>{destination.title}</h2>
-          <h4>{destination.place}</h4>
-          <p>{destination.category}</p>
-          <span>{destination.accommodation}</span>
-          <span>{destination.price}</span>
-          <p>{destination.description}</p>
+        <div className="detailCard d-flex">
+          <div>
+            <img
+              className="detailImage"
+              src={destination.image}
+              alt={destination.title}
+            />
+          </div>
+          <div className="ms-4">
+            <h2>{destination.title}</h2>
+            <h4>{destination.place}</h4>
+            <p>{destination.category}</p>
+            <span>{destination.accommodation}</span>
+            <span>{destination.price}</span>
+            <p>{destination.description}</p>
+          </div>
         </div>
       </div>
     </>
