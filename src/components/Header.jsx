@@ -12,7 +12,9 @@ export default function Header() {
           </Link>
 
           <h3>Our company</h3>
-          <h3>Favourites</h3>
+          <Link to={"/favourites"}>
+            <h3>Favourites</h3>
+          </Link>
         </div>
       </header>
     </>

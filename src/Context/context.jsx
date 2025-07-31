@@ -6,6 +6,7 @@ function GlobalProvider({ children }) {
   //state
   const [allDestinations, setAllDestinations] = useState([]);
   const [compareDestinations, setCompareDestinations] = useState([]);
+  const [fav, setFav] = useState([]);
 
   //fetch
   useEffect(() => {
@@ -32,6 +33,15 @@ function GlobalProvider({ children }) {
     });
   };
 
+  const handleFav = (destination) => {
+    setFav((prev) => {
+      if (prev.find((d) => d.id === destination.id)) {
+        return prev.filter((d) => d.id !== destination.id);
+      }
+      return [...prev, destination];
+    });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -40,6 +50,9 @@ function GlobalProvider({ children }) {
         compareDestinations,
         setCompareDestinations,
         handleCompare,
+        fav,
+        setFav,
+        handleFav,
       }}
     >
       {children}

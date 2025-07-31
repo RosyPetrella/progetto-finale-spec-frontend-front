@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../Context/context";
 import { useParams } from "react-router-dom";
+import HeartIcon from "../components/HeartIcon";
 
 export default function TravelDetail() {
   const { id } = useParams();
@@ -56,6 +57,7 @@ export default function TravelDetail() {
             >
               {isSelected ? "Remove compare" : "Compare"}
             </button>
+            <HeartIcon destination={destination} />
           </div>
         </div>
       </div>

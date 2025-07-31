@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { GlobalContext } from "../Context/context";
 import { Link } from "react-router-dom";
+import HeartIcon from "./HeartIcon";
+
 export default function Card({ destination }) {
   const { handleCompare, compareDestinations } = useContext(GlobalContext);
 
@@ -24,6 +26,7 @@ export default function Card({ destination }) {
           >
             {isSelected ? "Remove Compare" : "Compare"}
           </button>
+          <HeartIcon destination={destination} />
         </div>
       </div>
     </>
