@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import React from "react";
 import Card from "../components/Card";
 import { GlobalContext } from "../Context/context";
+import CompareButton from "../components/CompareButton";
 
 export default function DestinationsList() {
   const { allDestinations } = useContext(GlobalContext);
@@ -68,6 +69,7 @@ export default function DestinationsList() {
   };
   return (
     <>
+      <CompareButton />
       <div className="container d-flex  mt-2">
         {/* Barra di ricerca */}
         <div className="searchBar">
