@@ -22,6 +22,18 @@ export default function Comparator() {
     });
   }, [compareDestinations]);
 
+  if (compareDestinations.length === 0) {
+    return (
+      <div className="container mt-4">
+        <h2>No destinations selected for comparison</h2>
+        <p>
+          Select destinations to compare by clicking the "Compare" button on the
+          cards
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="container mt-4">

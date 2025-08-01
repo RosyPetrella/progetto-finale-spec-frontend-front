@@ -3,20 +3,22 @@ import React from "react";
 import Card from "../components/Card";
 import { GlobalContext } from "../Context/context";
 import CompareButton from "../components/CompareButton";
+import useDebounce from "../hooks/useDebounce";
 
 export default function DestinationsList() {
   const { allDestinations } = useContext(GlobalContext);
-  const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm, 300);
 
   const toggleSortDropDown = () => setIsSortOpen((prev) => !prev);
   const toggleCategoryDropDown = () => setIsCategoryOpen((prev) => !prev);
 
   const handleSearch = (e) => {
-    setQuery(e.target.value);
+    setSearchTerm(e.target.value);
   };
   const handleSort = (order) => {
     setSortOrder(order);
@@ -24,13 +26,15 @@ export default function DestinationsList() {
   };
 
   const filteredDestinations = React.useMemo(() => {
+    //log per verificare il debounce
+    // console.log("Current debouncedSearch:", debouncedSearch);
     if (!allDestinations || !Array.isArray(allDestinations)) return [];
 
     let filtered = allDestinations.filter((d) => {
-      if (!query && !category) return true;
+      if (!debouncedSearch && !category) return true;
 
-      if (query) {
-        const searchTerm = query.toLowerCase().trim();
+      if (searchTerm) {
+        const searchTerm = debouncedSearch.toLowerCase().trim();
         if (!d.title.toLowerCase().includes(searchTerm)) return false;
       }
 
@@ -46,7 +50,7 @@ export default function DestinationsList() {
         return b.title.localeCompare(a.title);
       }
     });
-  }, [allDestinations, query, category, sortOrder]);
+  }, [allDestinations, debouncedSearch, category, sortOrder]);
 
   if (!allDestinations) return <div>Loading...</div>;
 
@@ -77,7 +81,7 @@ export default function DestinationsList() {
             type="text"
             placeholder="Search..."
             className="form-control p-2 rounded-5 "
-            value={query}
+            value={searchTerm}
             onChange={handleSearch}
           />
         </div>

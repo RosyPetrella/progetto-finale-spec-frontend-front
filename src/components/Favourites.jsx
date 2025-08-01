@@ -8,7 +8,7 @@ export default function Favourites() {
   if (fav.length === 0) {
     return (
       <div className="container mt-4">
-        <h2>No favourites selected yet</h2>
+        <h2>Your list is empty</h2>
       </div>
     );
   }

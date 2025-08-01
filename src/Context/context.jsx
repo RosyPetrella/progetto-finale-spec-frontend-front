@@ -6,7 +6,10 @@ function GlobalProvider({ children }) {
   //state
   const [allDestinations, setAllDestinations] = useState([]);
   const [compareDestinations, setCompareDestinations] = useState([]);
-  const [fav, setFav] = useState([]);
+  const [fav, setFav] = useState(() => {
+    const savedFav = localStorage.getItem("fav");
+    return savedFav ? JSON.parse(savedFav) : [];
+  });
 
   //fetch
   useEffect(() => {
@@ -33,10 +36,15 @@ function GlobalProvider({ children }) {
     });
   };
 
+  useEffect(() => {
+    localStorage.setItem("fav", JSON.stringify(fav));
+  }, [fav]);
+
   const handleFav = (destination) => {
     setFav((prev) => {
       if (prev.find((d) => d.id === destination.id)) {
-        return prev.filter((d) => d.id !== destination.id);
+        const newFav = prev.filter((d) => d.id !== destination.id);
+        return newFav;
       }
       return [...prev, destination];
     });
