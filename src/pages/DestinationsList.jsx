@@ -1,9 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import React from "react";
 import Card from "../components/Card";
 import { GlobalContext } from "../Context/context";
 import CompareButton from "../components/CompareButton";
 import useDebounce from "../hooks/useDebounce";
+import { useParams } from "react-router-dom";
 
 export default function DestinationsList() {
   const { allDestinations } = useContext(GlobalContext);
@@ -13,6 +14,7 @@ export default function DestinationsList() {
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedSearch = useDebounce(searchTerm, 300);
+  const { category: urlCategory } = useParams();
 
   const toggleSortDropDown = () => setIsSortOpen((prev) => !prev);
   const toggleCategoryDropDown = () => setIsCategoryOpen((prev) => !prev);
@@ -25,20 +27,31 @@ export default function DestinationsList() {
     setIsSortOpen(false);
   };
 
+  useEffect(() => {
+    // console.log("urlCategory received:", urlCategory);
+    if (urlCategory) {
+      setCategory(urlCategory);
+    }
+  }, [urlCategory]);
+
   const filteredDestinations = React.useMemo(() => {
     //log per verificare il debounce
     // console.log("Current debouncedSearch:", debouncedSearch);
-    if (!allDestinations || !Array.isArray(allDestinations)) return [];
+    if (!allDestinations) return [];
 
     let filtered = allDestinations.filter((d) => {
+      // Se non c'è ricerca né categoria, mostra tutto
       if (!debouncedSearch && !category) return true;
 
-      if (searchTerm) {
+      // Controlla la categoria
+      if (category) {
+        if (d.category.toLowerCase() !== category.toLowerCase()) return false;
+      }
+      // Controlla la ricerca
+      if (debouncedSearch) {
         const searchTerm = debouncedSearch.toLowerCase().trim();
         if (!d.title.toLowerCase().includes(searchTerm)) return false;
       }
-
-      if (category && d.category !== category) return false;
 
       return true;
     });

@@ -18,6 +18,10 @@ function App() {
             <Route Component={DefaultLayout}>
               <Route path="/" Component={Homepage} />
               <Route path="/destinationsList" Component={DestinationsList} />
+              <Route
+                path="/destinationsList/:category"
+                element={<DestinationsList />}
+              />
               <Route path="/destinations/:id" Component={TravelDetail} />
               <Route path="/comparator" Component={Comparator} />
               <Route path="/favourites" Component={Favourites} />

@@ -7,3 +7,60 @@
   width: 350px;
   box-shadow: rgba(0, 0, 0, 0.3) 3px 4px 6px;
 }
+
+/* Presentation */
+.philosophy-section {
+  padding: 80px 20px;
+  background-color: #f9f6f2;
+  font-family: "Playfair Display", serif;
+  color: #2c2c2c;
+  line-height: 1.7;
+}
+
+.philosophy-section .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 60px;
+  color: #1a1a1a;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.philosophy-block {
+  margin-bottom: 50px;
+}
+
+.philosophy-block h2 {
+  font-size: 1.8rem;
+  color: #7a5c34;
+  margin-bottom: 20px;
+}
+
+.philosophy-block p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.philosophy-block strong {
+  font-weight: 600;
+  color: #3e3221;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .philosophy-block h2 {
+    font-size: 1.4rem;
+  }
+
+  .philosophy-block p {
+    font-size: 1rem;
+  }
+}
