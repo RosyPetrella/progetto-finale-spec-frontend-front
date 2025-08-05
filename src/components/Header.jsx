@@ -2,19 +2,27 @@ import { Link, NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <>
-      <header>
-        <div className="d-flex flex-row justify-content-around align-items-center">
-          <Link to={"/"}>
-            <img src="/images/logo.png" className="headerLogo" alt="logo" />
-          </Link>
-          <Link to={"/destinationsList"}>
-            <h3>Destinations</h3>
+      <header className="lux-header">
+        <div className="header-container">
+          <Link to="/">
+            <img
+              src="/images/logo.png"
+              className="header-logo"
+              alt="Luxury Escape Logo"
+            />
           </Link>
 
-          <h3>Our company</h3>
-          <Link to={"/favourites"}>
-            <h3>Favourites</h3>
-          </Link>
+          <nav className="nav-links">
+            <NavLink to="/destinationsList" className="nav-link">
+              Destinations
+            </NavLink>
+            <NavLink to="/presentation" className="nav-link">
+              Our Philosophy
+            </NavLink>
+            <NavLink to="/favourites" className="nav-link">
+              Favourites
+            </NavLink>
+          </nav>
         </div>
       </header>
     </>

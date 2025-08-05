@@ -1,125 +1,36 @@
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
-    <>
-      <footer>
-        <div class="container">
-          {" "}
-          <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
-            {" "}
-            <div class="col mb-3">
-              {" "}
-              <a
-                href="/"
-                class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
-                aria-label="Bootstrap"
-              >
-                {" "}
-                <svg class="bi me-2" width="40" height="32" aria-hidden="true">
-                  <use xlink:href="#bootstrap"></use>
-                </svg>{" "}
-              </a>{" "}
-              <p class="text-body-secondary">© 2025</p>{" "}
-            </div>{" "}
-            <div class="col mb-3"></div>{" "}
-            <div class="col mb-3">
-              {" "}
-              <h5>Section</h5>{" "}
-              <ul class="nav flex-column">
-                {" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Home
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Features
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Pricing
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    FAQs
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    About
-                  </a>
-                </li>{" "}
-              </ul>{" "}
-            </div>{" "}
-            <div class="col mb-3">
-              {" "}
-              <h5>Section</h5>{" "}
-              <ul class="nav flex-column">
-                {" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Home
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Features
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Pricing
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    FAQs
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    About
-                  </a>
-                </li>{" "}
-              </ul>{" "}
-            </div>{" "}
-            <div class="col mb-3">
-              {" "}
-              <h5>Section</h5>{" "}
-              <ul class="nav flex-column">
-                {" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Home
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Features
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    Pricing
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    FAQs
-                  </a>
-                </li>{" "}
-                <li class="nav-item mb-2">
-                  <a href="#" class="nav-link p-0 text-body-secondary">
-                    About
-                  </a>
-                </li>{" "}
-              </ul>{" "}
-            </div>{" "}
-          </footer>{" "}
+    <footer className="lux-footer">
+      <div className="container footer-content">
+        <div className="footer-brand">
+          <h3>Luxury Escape</h3>
+          <p>Crafting extraordinary journeys for exceptional travelers.</p>
         </div>
-      </footer>
-    </>
+
+        <div className="footer-links">
+          <Link to="/">Home</Link>
+          <Link to="/presentation">Our Philosophy</Link>
+          <Link to="/destinationsList">Destinations</Link>
+          <Link to="/">Contact</Link>
+        </div>
+
+        <div className="footer-socials">
+          <a href="#" aria-label="Instagram">
+            🌐
+          </a>
+          <a href="#" aria-label="Facebook">
+            📘
+          </a>
+          <a href="#" aria-label="Twitter">
+            🐦
+          </a>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>© {new Date().getFullYear()} Luxury Escape. All rights reserved.</p>
+      </div>
+    </footer>
   );
 }

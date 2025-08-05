@@ -87,94 +87,84 @@ export default function DestinationsList() {
   return (
     <>
       <CompareButton />
-      <div className="container d-flex  mt-2">
-        {/* Barra di ricerca */}
-        <div className="searchBar">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="form-control p-2 rounded-5 "
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-        </div>
-        {/* Filtra per categoria */}
-        <div className="category">
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              onClick={toggleCategoryDropDown}
-            >
-              Category
-            </button>
-            {isCategoryOpen && (
-              <ul className={`dropdown-menu ${isCategoryOpen ? "show" : ""}`}>
-                <li>
+      <div className="lux-filters">
+        <input
+          type="text"
+          placeholder="Search destination..."
+          className="lux-search-input"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+
+        <div className="lux-dropdown">
+          <button className="lux-btn" onClick={toggleCategoryDropDown}>
+            Category
+          </button>
+          {isCategoryOpen && (
+            <ul className="lux-dropdown-menu">
+              <li>
+                <button
+                  className="lux-dropdown-item"
+                  onClick={() => handleCategory("")}
+                >
+                  All categories
+                </button>
+              </li>
+              {uniqueCategories.map((c) => (
+                <li key={c}>
                   <button
-                    className="dropdown-item"
-                    onClick={() => handleCategory("")}
+                    className="lux-dropdown-item"
+                    onClick={() => handleCategory(c)}
                   >
-                    All categories
+                    {c}
                   </button>
                 </li>
-                {uniqueCategories.map((c) => (
-                  <li key={c}>
-                    <button
-                      className="dropdown-item"
-                      onClick={() => handleCategory(c)}
-                    >
-                      {c}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-        {/* Orina per */}
-        <div className="sort">
-          <div className="dropdown">
-            <button
-              className="btn btn-secondary dropdown-toggle"
-              onClick={toggleSortDropDown}
-            >
-              Sort by
-            </button>
-            {isSortOpen && (
-              <ul className={`dropdown-menu ${isSortOpen ? "show" : ""}`}>
-                <li>
-                  <button
-                    className="dropdown-item"
-                    onClick={() => handleSort("asc")}
-                  >
-                    A-Z
-                  </button>
-                </li>
-                <li>
-                  <button
-                    className="dropdown-item"
-                    onClick={() => handleSort("desc")}
-                  >
-                    Z-A
-                  </button>
-                </li>
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="container">
-        <div className="row justify-content-evenly">
-          {filteredDestinations && filteredDestinations.length > 0 ? (
-            filteredDestinations.map((destination) => (
-              <div className="col-4" key={destination.id}>
-                <Card destination={destination} />
-              </div>
-            ))
-          ) : (
-            <p>No destinations found</p>
+              ))}
+            </ul>
           )}
         </div>
+
+        <div className="lux-dropdown">
+          <button className="lux-btn" onClick={toggleSortDropDown}>
+            Sort by
+          </button>
+          {isSortOpen && (
+            <ul className="lux-dropdown-menu">
+              <li>
+                <button
+                  className="lux-dropdown-item"
+                  onClick={() => handleSort("asc")}
+                >
+                  A-Z
+                </button>
+              </li>
+              <li>
+                <button
+                  className="lux-dropdown-item"
+                  onClick={() => handleSort("desc")}
+                >
+                  Z-A
+                </button>
+              </li>
+            </ul>
+          )}
+        </div>
+      </div>
+
+      {/* CARDS */}
+      <div className="lux-cards-container  justify-content-evenly">
+        {filteredDestinations && filteredDestinations.length > 0 ? (
+          filteredDestinations.map((destination) => (
+            <div
+              className="col-md-3 d-flex lux-card-wrapper"
+              key={destination.id}
+            >
+              <Card destination={destination} />
+            </div>
+          ))
+        ) : (
+          <p className="lux-empty">No destinations found</p>
+        )}
       </div>
     </>
   );

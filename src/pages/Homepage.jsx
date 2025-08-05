@@ -4,25 +4,20 @@ export default function Homepage() {
   return (
     <>
       {/* HERO */}
-      <div className="px-4 py-5 my-5 text-center">
-        <h1 className="display-5 fw-bold text-body-emphasis">LUXURY ESCAPES</h1>
-        <div className="col-lg-6 mx-auto">
-          <p className="lead mb-4">
+      <section className="lux-hero">
+        <div className="hero-content">
+          <h1 className="hero-title">LUXURY ESCAPES</h1>
+          <p className="hero-subtitle">
             Discover tailor-made luxury travel experiences designed for
             discerning explorers. From private islands to curated city escapes,
             we craft unforgettable journeys with elegance, comfort, and
             exclusivity.
           </p>
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button
-              type="button"
-              className="btn btn-outline-secondary btn-lg px-4"
-            >
-              Our Philosophy
-            </button>
+          <div className="hero-actions">
+            <button className="hero-button">Our Philosophy</button>
           </div>
         </div>
-      </div>
+      </section>
       {/* CAROUSEL */}
       <div
         id="myCarousel"

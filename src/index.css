@@ -1,11 +1,121 @@
-.headerLogo {
-  height: 150px;
-}
-
 .detailImage {
   height: 500px;
   width: 350px;
   box-shadow: rgba(0, 0, 0, 0.3) 3px 4px 6px;
+}
+
+/* HEADER */
+.lux-header {
+  background-color: white;
+  padding: 0rem 2rem;
+  border-bottom: 1px solid #e3ddd7;
+  font-family: "Outfit", sans-serif;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo {
+  width: 120px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #2b2b2b;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #1d1c1c;
+}
+
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #1d1c1c;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* HOME PAGE */
+/* hero */
+.lux-hero {
+  background: #f8f5f2;
+  color: #2b2b2b;
+  text-align: center;
+  padding: 8rem 2rem;
+  position: relative;
+  font-family: "Outfit", sans-serif;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1d1c1c;
+  letter-spacing: 2px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  color: #4a4a4a;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-button {
+  background-color: transparent;
+  border: 2px solid #1d1c1c;
+  color: #1d1c1c;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-family: "Outfit", sans-serif;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.hero-button:hover {
+  background-color: #1d1c1c;
+  color: #fff;
+  cursor: pointer;
 }
 
 /* Presentation */
@@ -63,4 +173,274 @@
   .philosophy-block p {
     font-size: 1rem;
   }
+}
+
+/* TRAVEL LIST */
+.lux-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 1200px;
+  font-family: "Outfit", sans-serif;
+}
+
+.lux-search-input {
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  border: 1px solid #d8d1c7;
+  width: 250px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.lux-search-input:focus {
+  outline: none;
+  border-color: #aaa29b;
+}
+
+.lux-btn {
+  background-color: #f3efe9;
+  border: 1px solid #d8d1c7;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: "Outfit", sans-serif;
+  color: #2b2b2b;
+  transition: background-color 0.3s ease;
+}
+
+.lux-btn:hover {
+  background-color: #e9e5df;
+}
+
+.lux-dropdown {
+  position: relative;
+}
+
+.lux-dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #dcd7d0;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  width: 200px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lux-dropdown-item {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  font-family: "Outfit", sans-serif;
+  cursor: pointer;
+}
+
+.lux-dropdown-item:hover {
+  background-color: #f7f4f0;
+}
+
+.lux-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+}
+
+.lux-card-wrapper {
+  width: 300px;
+}
+
+.lux-empty {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  color: #777;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+/* Card */
+.lux-card {
+  min-height: 200px;
+  min-width: 400px;
+  border: 1px solid #e5e5e5;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease-in-out;
+}
+
+.lux-card:hover {
+  transform: scale(1.02);
+}
+
+.lux-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.lux-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d2d2d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lux-card-category {
+  font-size: 1rem;
+  color: #888;
+}
+
+.lux-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.lux-btn {
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.lux-btn-primary {
+  background-color: transparent;
+  border: 1px solid #2d2d2d;
+  color: #2d2d2d;
+}
+
+.lux-btn-primary:hover {
+  background-color: #2d2d2d;
+  color: #fff;
+}
+
+.lux-btn-compare {
+  background-color: #b49c73;
+  color: white;
+}
+
+.lux-btn-compare:hover {
+  background-color: #a38a61;
+}
+
+.lux-btn-danger {
+  background-color: #a94040;
+  color: white;
+}
+
+.lux-btn-danger:hover {
+  background-color: #8c3535;
+}
+
+/* Heart-icon */
+.heart-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  padding: 0.5rem;
+  color: #c1121f;
+}
+
+.heart-button:hover {
+  transform: scale(1.2);
+}
+
+.heart-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* FOOTER */
+
+.lux-footer {
+  background-color: #111;
+  color: #e0e0e0;
+  padding: 3rem 1rem 2rem;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.footer-brand h3 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+  font-size: 1rem;
+  color: #aaa;
+  max-width: 400px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-socials a {
+  font-size: 1.4rem;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: #777;
 }

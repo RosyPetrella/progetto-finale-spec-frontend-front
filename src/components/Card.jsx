@@ -9,24 +9,27 @@ export default function Card({ destination }) {
   const isSelected = compareDestinations.find((d) => d.id === destination.id);
   return (
     <>
-      <div className="card m-3">
-        <div className="card-body">
-          <h5 className="card-title">{destination.title}</h5>
-          <span className="card-text">{destination.category}</span>
-          <br />
-          <Link
-            to={`/destinations/${destination.id}`}
-            className="btn btn-primary"
-          >
-            Show details
-          </Link>
-          <button
-            className={`btn ${isSelected ? "btn-danger" : "btn-success"}`}
-            onClick={() => handleCompare(destination)}
-          >
-            {isSelected ? "Remove Compare" : "Compare"}
-          </button>
-          <HeartIcon destination={destination} />
+      <div className="lux-card">
+        <div className="lux-card-body">
+          <h5 className="lux-card-title">{destination.title}</h5>
+          <span className="lux-card-category">{destination.category}</span>
+          <div className="lux-card-actions">
+            <Link
+              to={`/destinations/${destination.id}`}
+              className="lux-btn lux-btn-primary"
+            >
+              Show details
+            </Link>
+            <button
+              className={`lux-btn ${
+                isSelected ? "lux-btn-danger" : "lux-btn-compare"
+              }`}
+              onClick={() => handleCompare(destination)}
+            >
+              {isSelected ? "Remove Compare" : "Compare"}
+            </button>
+            <HeartIcon destination={destination} />
+          </div>
         </div>
       </div>
     </>

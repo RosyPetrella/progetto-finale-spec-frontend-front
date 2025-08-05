@@ -8,6 +8,7 @@ import DefaultLayout from "./layout/DefaultLayout";
 import DestinationsList from "./pages/DestinationsList";
 import Comparator from "./components/Comparator";
 import Favourites from "./components/Favourites";
+import Presentation from "./pages/Presentation";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/destinations/:id" Component={TravelDetail} />
               <Route path="/comparator" Component={Comparator} />
               <Route path="/favourites" Component={Favourites} />
+              <Route path="/presentation" Component={Presentation} />
             </Route>
           </Routes>
         </BrowserRouter>

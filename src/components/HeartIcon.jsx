@@ -7,7 +7,7 @@ export default function HeartIcon({ destination }) {
   const isFav = fav.find((f) => f.id === destination.id);
 
   return (
-    <button className="btn btn-link" onClick={() => handleFav(destination)}>
+    <button className="btn heart-button" onClick={() => handleFav(destination)}>
       {isFav ? "❤️" : "🤍"}
     </button>
   );
