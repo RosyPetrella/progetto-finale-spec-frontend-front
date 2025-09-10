@@ -154,13 +154,10 @@ export default function DestinationsList() {
       </div>
 
       {/* CARDS */}
-      <div className="lux-cards-container  justify-content-evenly">
+      <div className="lux-cards-container ">
         {filteredDestinations && filteredDestinations.length > 0 ? (
           filteredDestinations.map((destination) => (
-            <div
-              className="col-md-3 d-flex lux-card-wrapper"
-              key={destination.id}
-            >
+            <div className=" d-flex lux-card-wrapper" key={destination.id}>
               <Card destination={destination} />
             </div>
           ))

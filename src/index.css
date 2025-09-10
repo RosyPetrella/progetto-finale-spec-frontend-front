@@ -2,11 +2,14 @@ body {
   font-family: "Outfit", sans-serif;
 }
 
-h1,
+h1 {
+  font-family: "Lora", serif;
+}
+
 h2,
 h3,
 .lux-card-title {
-  font-family: "Lora", serif;
+  font-family: "Outfit", sans-serif;
 }
 
 .detailImage {
@@ -92,7 +95,7 @@ h3,
 
 .hero-title {
   font-size: 3.5rem;
-  font-family: "Playfair Display", serif;
+  font-family: "Lora", serif;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #1d1c1c;
@@ -306,18 +309,35 @@ h3,
 }
 
 .lux-cards-container {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-
-  margin: 0 auto 3rem;
+  justify-content: flex-start;
+  column-gap: 1rem;
+  row-gap: 4rem; 
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 1rem;
+  max-width: 1200px;
+  width: 100%; */
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr)); /* sempre 3 colonne */
+  gap: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto; /* centra il container */
+  padding: 0 1rem;
+  justify-items: center;
+  margin-bottom: 3rem;
 }
 
 .lux-card-wrapper {
-  width: 300px;
+  /* width: 1 1 calc(33.333% - 2rem);
+  min-width: 300px;
   flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0; */
+  width: 100%;
+  max-width: 350px; /* così non si “allungano” troppo */
   box-sizing: border-box;
 }
 
@@ -565,6 +585,7 @@ h3,
   border-radius: 20px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
+  margin-bottom: 2rem;
   max-width: 1000px;
   width: 100%;
 }
@@ -579,6 +600,7 @@ h3,
   position: relative;
   flex: 1;
   max-width: 500px;
+  max-height: 375px;
   height: auto;
   overflow: hidden;
   border-radius: 15px;
@@ -609,6 +631,18 @@ h3,
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.detail-info .lux-btn {
+  min-width: 150px;
+  margin: 1rem auto;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .detail-title {
@@ -650,7 +684,7 @@ h3,
   background-color: #111;
   color: #e0e0e0;
   padding: 3rem 1rem 2rem;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 .footer-content {

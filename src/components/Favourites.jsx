@@ -38,9 +38,9 @@ export default function Favourites() {
           <CompareButton />
         </div>
 
-        <div className="row">
+        <div className="lux-cards-container">
           {fav.map((destination) => (
-            <div key={destination.id} className="col-4 mb-4">
+            <div key={destination.id} className="d-flex lux-card-wrapper">
               <Card destination={destination} />
             </div>
           ))}

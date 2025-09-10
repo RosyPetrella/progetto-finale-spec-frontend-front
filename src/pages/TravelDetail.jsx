@@ -56,11 +56,11 @@ export default function TravelDetail() {
             <p className="detail-description">{destination.description}</p>
             <button
               className={`lux-btn ${
-                isSelected ? "lux-btn-danger" : "lux-btn-compare"
+                isSelected ? "active-compare" : "inactive-compare"
               }`}
               onClick={() => handleCompare(destination)}
             >
-              {isSelected ? "Remove Compare" : "Compare"}
+              {isSelected ? "Remove" : "Compare"}
             </button>
           </div>
         </div>
