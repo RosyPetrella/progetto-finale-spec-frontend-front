@@ -86,69 +86,71 @@ export default function DestinationsList() {
   };
   return (
     <>
-      <CompareButton />
       <div className="lux-filters">
-        <input
-          type="text"
-          placeholder="Search destination..."
-          className="lux-search-input"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+        <div className="filters-group">
+          <input
+            type="text"
+            placeholder="Search destination..."
+            className="lux-search-input"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
 
-        <div className="lux-dropdown">
-          <button className="lux-btn" onClick={toggleCategoryDropDown}>
-            Category
-          </button>
-          {isCategoryOpen && (
-            <ul className="lux-dropdown-menu">
-              <li>
-                <button
-                  className="lux-dropdown-item"
-                  onClick={() => handleCategory("")}
-                >
-                  All categories
-                </button>
-              </li>
-              {uniqueCategories.map((c) => (
-                <li key={c}>
+          <div className="lux-dropdown">
+            <button className="lux-btn" onClick={toggleCategoryDropDown}>
+              Category
+            </button>
+            {isCategoryOpen && (
+              <ul className="lux-dropdown-menu">
+                <li>
                   <button
                     className="lux-dropdown-item"
-                    onClick={() => handleCategory(c)}
+                    onClick={() => handleCategory("")}
                   >
-                    {c}
+                    All categories
                   </button>
                 </li>
-              ))}
-            </ul>
-          )}
-        </div>
+                {uniqueCategories.map((c) => (
+                  <li key={c}>
+                    <button
+                      className="lux-dropdown-item"
+                      onClick={() => handleCategory(c)}
+                    >
+                      {c}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-        <div className="lux-dropdown">
-          <button className="lux-btn" onClick={toggleSortDropDown}>
-            Sort by
-          </button>
-          {isSortOpen && (
-            <ul className="lux-dropdown-menu">
-              <li>
-                <button
-                  className="lux-dropdown-item"
-                  onClick={() => handleSort("asc")}
-                >
-                  A-Z
-                </button>
-              </li>
-              <li>
-                <button
-                  className="lux-dropdown-item"
-                  onClick={() => handleSort("desc")}
-                >
-                  Z-A
-                </button>
-              </li>
-            </ul>
-          )}
+          <div className="lux-dropdown">
+            <button className="lux-btn" onClick={toggleSortDropDown}>
+              Sort by
+            </button>
+            {isSortOpen && (
+              <ul className="lux-dropdown-menu">
+                <li>
+                  <button
+                    className="lux-dropdown-item"
+                    onClick={() => handleSort("asc")}
+                  >
+                    A-Z
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="lux-dropdown-item"
+                    onClick={() => handleSort("desc")}
+                  >
+                    Z-A
+                  </button>
+                </li>
+              </ul>
+            )}
+          </div>
         </div>
+        <CompareButton />
       </div>
 
       {/* CARDS */}

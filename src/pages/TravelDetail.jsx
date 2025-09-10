@@ -33,31 +33,35 @@ export default function TravelDetail() {
   const isSelected = compareDestinations.find((d) => d.id === destination.id);
   return (
     <>
-      <div className="container">
-        <div className="detailCard d-flex">
-          <div>
+      <div className="container d-flex justify-content-center">
+        <div className="detail-card">
+          <div className="detail-img-wrapper">
             <img
-              className="detailImage"
+              className="detail-image"
               src={destination.image}
               alt={destination.title}
             />
+            <div className="heart-icon">
+              <HeartIcon destination={destination} />
+            </div>
           </div>
-          <div className="ms-4">
-            <h2>{destination.title}</h2>
-            <h4>{destination.place}</h4>
-            <p>{destination.category}</p>
-            <span>{destination.accommodation}</span>
-            <span>{destination.price}</span>
-            <p>{destination.description}</p>
+          <div className="detail-info">
+            <h2 className="detail-title">{destination.title}</h2>
+            <h4 className="detail-place">{destination.place}</h4>
+            <p className="detail-category">{destination.category}</p>
+            <span className="detail-accommodation">
+              {destination.accommodation}
+            </span>
+            <span className="detail-price">{destination.price}</span>
+            <p className="detail-description">{destination.description}</p>
             <button
-              className={`btn ${
-                isSelected ? "btn-danger" : "btn-success"
-              } mt-3`}
+              className={`lux-btn ${
+                isSelected ? "lux-btn-danger" : "lux-btn-compare"
+              }`}
               onClick={() => handleCompare(destination)}
             >
-              {isSelected ? "Remove compare" : "Compare"}
+              {isSelected ? "Remove Compare" : "Compare"}
             </button>
-            <HeartIcon destination={destination} />
           </div>
         </div>
       </div>

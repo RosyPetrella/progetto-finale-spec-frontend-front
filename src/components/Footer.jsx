@@ -12,19 +12,18 @@ export default function Footer() {
           <Link to="/">Home</Link>
           <Link to="/presentation">Our Philosophy</Link>
           <Link to="/destinationsList">Destinations</Link>
-          <Link to="/">Contact</Link>
         </div>
 
         <div className="footer-socials">
-          <a href="#" aria-label="Instagram">
-            🌐
-          </a>
-          <a href="#" aria-label="Facebook">
-            📘
-          </a>
-          <a href="#" aria-label="Twitter">
-            🐦
-          </a>
+          <Link to="/" aria-label="Instagram" alt="instagram">
+            📷 Instagram
+          </Link>
+          <Link to="/" aria-label="Facebook" alt="facebook">
+            📘 Facebook
+          </Link>
+          <Link to="/" aria-label="Twitter" alt="twitter">
+            🐦 Twitter
+          </Link>
         </div>
       </div>
 

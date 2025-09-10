@@ -3,21 +3,6 @@ import { Link } from "react-router-dom";
 export default function Homepage() {
   return (
     <>
-      {/* HERO */}
-      <section className="lux-hero">
-        <div className="hero-content">
-          <h1 className="hero-title">LUXURY ESCAPES</h1>
-          <p className="hero-subtitle">
-            Discover tailor-made luxury travel experiences designed for
-            discerning explorers. From private islands to curated city escapes,
-            we craft unforgettable journeys with elegance, comfort, and
-            exclusivity.
-          </p>
-          <div className="hero-actions">
-            <button className="hero-button">Our Philosophy</button>
-          </div>
-        </div>
-      </section>
       {/* CAROUSEL */}
       <div
         id="myCarousel"
@@ -141,6 +126,23 @@ export default function Homepage() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+      {/* HERO */}
+      <section className="lux-hero">
+        <div className="hero-content">
+          <h1 className="hero-title">LUXURY ESCAPES</h1>
+          <p className="hero-subtitle">
+            Discover tailor-made luxury travel experiences designed for
+            discerning explorers. From private islands to curated city escapes,
+            we craft unforgettable journeys with elegance, comfort, and
+            exclusivity.
+          </p>
+          <div className="hero-actions">
+            <Link to="presentation" className="hero-button">
+              Our Philosophy
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

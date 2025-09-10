@@ -13,23 +13,24 @@ export default function Card({ destination }) {
         <div className="lux-card-body">
           <h5 className="lux-card-title">{destination.title}</h5>
           <span className="lux-card-category">{destination.category}</span>
+
           <div className="lux-card-actions">
-            <Link
-              to={`/destinations/${destination.id}`}
-              className="lux-btn lux-btn-primary"
-            >
+            <Link to={`/destinations/${destination.id}`} className="lux-btn">
               Show details
             </Link>
             <button
               className={`lux-btn ${
-                isSelected ? "lux-btn-danger" : "lux-btn-compare"
+                isSelected ? "active-compare" : "inactive-compare"
               }`}
               onClick={() => handleCompare(destination)}
             >
-              {isSelected ? "Remove Compare" : "Compare"}
+              {isSelected ? "Remove" : "Compare"}
             </button>
-            <HeartIcon destination={destination} />
           </div>
+        </div>
+
+        <div className="lux-card-footer">
+          <HeartIcon destination={destination} />
         </div>
       </div>
     </>

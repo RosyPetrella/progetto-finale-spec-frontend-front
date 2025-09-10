@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../Context/context";
+import HeartIcon from "./HeartIcon";
 
 export default function Comparator() {
   const { compareDestinations } = useContext(GlobalContext);
@@ -36,26 +37,42 @@ export default function Comparator() {
 
   return (
     <>
-      <div className="container mt-4">
-        <h2>Compare destinations</h2>
-        <div className="row justify-content-between">
+      <div className="container comparator-container">
+        <h2 className="comparator-title">Compare Destinations</h2>
+        <div className="row justify-content-center">
           {destinations.map((dest) => (
-            <div key={dest.id} className="col-5">
-              <div className="card">
-                <img
-                  src={dest.image}
-                  className="card-img-top"
-                  alt={dest.title}
-                />
-                <div className="card-body">
+            <div
+              key={dest.id}
+              className="col-12 col-md-6 col-lg-5 comparator-card-wrapper"
+            >
+              <div className="comparator-card">
+                <div className="comparator-img-wrapper">
+                  <img
+                    src={dest.image}
+                    alt={dest.title}
+                    className="comparator-image"
+                  />
+                  <div className="heart-icon-fav">
+                    <HeartIcon destination={dest} />
+                  </div>
+                </div>
+                <div className="comparator-details">
                   <h3 className="card-title">{dest.title}</h3>
-                  <p className="card-text">Category: {dest.category}</p>
-                  <p className="card-text">Place: {dest.place}</p>
-                  <p className="card-text">Price: {dest.price}</p>
-                  <p className="card-text">
-                    Accommodation: {dest.accommodation}
-                  </p>
-                  <p className="card-text">{dest.description}</p>
+                  <div className="comparator-line">
+                    <span>Category:</span> {dest.category}
+                  </div>
+                  <div className="comparator-line">
+                    <span>Place:</span> {dest.place}
+                  </div>
+                  <div className="comparator-line">
+                    <span>Price:</span> {dest.price}
+                  </div>
+                  <div className="comparator-line">
+                    <span>Accommodation:</span> {dest.accommodation}
+                  </div>
+                  <div className="comparator-description">
+                    {dest.description}
+                  </div>
                 </div>
               </div>
             </div>
