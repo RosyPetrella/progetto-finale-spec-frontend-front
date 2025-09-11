@@ -192,15 +192,6 @@ h3,
 
 /* TRAVEL LIST */
 .lux-filters {
-  /* display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2rem auto;
-  max-width: 1200px;
-  font-family: "Outfit", sans-serif;
-  padding: 0 1rem; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -252,28 +243,6 @@ h3,
   background-color: #e9e5df;
 }
 
-/* Bottone "Compare" normale */
-/* .lux-btn-compare {
-  background-color: #dad3c8;
-  color: black;
-  border: none;
-}
-
-.lux-btn-compare:hover {
-  background-color: #b3a796;
-} */
-
-/* Bottone "Compare" attivo (selezionato) */
-/* .lux-btn-compare-active {
-  background-color: #baae9b; 
-  color: white;
-  border: none;
-}
-
-.lux-btn-compare-active:hover {
-  background-color: #ada08a;
-} */
-
 .lux-dropdown {
   position: relative;
 }
@@ -309,17 +278,6 @@ h3,
 }
 
 .lux-cards-container {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  column-gap: 1rem;
-  row-gap: 4rem; 
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 1rem;
-  max-width: 1200px;
-  width: 100%; */
-
   display: grid;
   grid-template-columns: repeat(3, minmax(300px, 1fr)); /* sempre 3 colonne */
   gap: 3rem 2rem;
@@ -331,11 +289,6 @@ h3,
 }
 
 .lux-card-wrapper {
-  /* width: 1 1 calc(33.333% - 2rem);
-  min-width: 300px;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  margin: 0; */
   width: 100%;
   max-width: 350px; /* così non si “allungano” troppo */
   box-sizing: border-box;
@@ -433,25 +386,6 @@ h3,
   outline: none;
   box-shadow: none;
 }
-
-/* Compare Button */
-/* .compare-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2rem 0;
-} */
-
-/* .compare-btn {
-  font-size: 1.2rem;
-  padding: 0.75rem 2rem;
-  border-radius: 50px;
-  transition: all 0.3s ease-in-out;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-} */
 
 .active-compare {
   background-color: #846f6f !important;

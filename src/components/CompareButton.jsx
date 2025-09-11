@@ -17,7 +17,6 @@ export default function CompareButton() {
 
   return (
     <>
-      {/* <div className="container position-relative compare-container"> */}
       <Link to="/comparator" onClick={handleClick}>
         <button
           className={`lux-btn ${

@@ -1,4 +1,3 @@
-import { useState, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { GlobalProvider } from "./Context/context";

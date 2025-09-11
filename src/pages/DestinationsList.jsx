@@ -7,7 +7,9 @@ import useDebounce from "../hooks/useDebounce";
 import { useParams } from "react-router-dom";
 
 export default function DestinationsList() {
+  // Prendo tutte le destinazioni dal contesto globale
   const { allDestinations } = useContext(GlobalContext);
+  // Stati locali
   const [category, setCategory] = useState("");
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -16,29 +18,31 @@ export default function DestinationsList() {
   const debouncedSearch = useDebounce(searchTerm, 300);
   const { category: urlCategory } = useParams();
 
+  // Funzioni per aprire/chiudere i dropdown
   const toggleSortDropDown = () => setIsSortOpen((prev) => !prev);
   const toggleCategoryDropDown = () => setIsCategoryOpen((prev) => !prev);
 
+  // Aggiorna il testo della ricerca ad ogni input
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
+  // Imposta ordine di ordinamento e chiude dropdown
   const handleSort = (order) => {
     setSortOrder(order);
     setIsSortOpen(false);
   };
 
+  // Se c'è una categoria nell'URL, selezionala automaticamente
   useEffect(() => {
-    // console.log("urlCategory received:", urlCategory);
     if (urlCategory) {
       setCategory(urlCategory);
     }
   }, [urlCategory]);
 
   const filteredDestinations = React.useMemo(() => {
-    //log per verificare il debounce
-    // console.log("Current debouncedSearch:", debouncedSearch);
     if (!allDestinations) return [];
 
+    // Filtra e ordina le destinazioni in base a categoria, ricerca e ordine
     let filtered = allDestinations.filter((d) => {
       // Se non c'è ricerca né categoria, mostra tutto
       if (!debouncedSearch && !category) return true;
@@ -56,6 +60,7 @@ export default function DestinationsList() {
       return true;
     });
 
+    // Ordinamento alfabetico basato su sortOrder
     return filtered.sort((a, b) => {
       if (sortOrder === "asc") {
         return a.title.localeCompare(b.title);
@@ -65,6 +70,7 @@ export default function DestinationsList() {
     });
   }, [allDestinations, debouncedSearch, category, sortOrder]);
 
+  // Mostra loading se le destinazioni non sono ancora disponibili
   if (!allDestinations) return <div>Loading...</div>;
 
   //estraggo ogni categoria per evitare che ci siano duplicati
@@ -80,6 +86,7 @@ export default function DestinationsList() {
     return categories;
   }, [allDestinations]);
 
+  // Aggiorna categoria selezionata e chiude dropdown
   const handleCategory = (selectedCategory) => {
     setCategory(selectedCategory);
     setIsCategoryOpen(false);

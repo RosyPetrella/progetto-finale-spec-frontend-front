@@ -4,11 +4,14 @@ import { useParams } from "react-router-dom";
 import HeartIcon from "../components/HeartIcon";
 
 export default function TravelDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); //Legge l'id della destinazione dall'URL
   const [destination, setDestination] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  // handleCompare per aggiungere/rimuovere destinazioni dal confronto
+  // compareDestinations array di destinazioni selezionate per il confronto
   const { handleCompare, compareDestinations } = useContext(GlobalContext);
 
+  // useEffect per caricare i dati della destinazione al mount o quando cambia l'id
   useEffect(() => {
     const fetchDestination = async () => {
       try {
@@ -16,20 +19,22 @@ export default function TravelDetail() {
         if (!res.ok) throw new Error(`Errore: ${res.status}`);
         const data = await res.json();
         console.log("Dati ricevuti:", data);
+        // Aggiorno lo stato con la destinazione ricevuta
         setDestination(data.destination);
       } catch (error) {
         console.error("Errore nel caricamento:", error);
       } finally {
-        setIsLoading(false);
+        setIsLoading(false); // Fine caricamento (sia in caso di successo che errore)
       }
     };
 
-    fetchDestination();
-  }, [id]);
+    fetchDestination(); // Chiamata alla funzione fetch
+  }, [id]); // Si ri-esegue se cambia l'id della destinazione
 
   if (isLoading) return <p>Caricamento in corso...</p>;
   if (!destination) return <p>Destinazione non trovata</p>;
 
+  // Controllo se la destinazione è già selezionata per il confronto
   const isSelected = compareDestinations.find((d) => d.id === destination.id);
   return (
     <>

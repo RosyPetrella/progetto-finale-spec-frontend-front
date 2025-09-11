@@ -3,15 +3,20 @@ import { GlobalContext } from "../Context/context";
 import HeartIcon from "./HeartIcon";
 
 export default function Comparator() {
+  // prendo dal contesto la lista delle destinazioni scelte per il confronto
   const { compareDestinations } = useContext(GlobalContext);
+  // stato locale che contiene i dettagli completi scaricati dal backend
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
+    // svuoto la lista all'inizio
     setDestinations([]);
+    // per ogni destinazione selezionata nel contesto faccio una fetch per ottenere i dati completi dal backend
     compareDestinations.forEach((dest) => {
       fetch(`http://localhost:3001/destinations/${dest.id}`)
         .then((res) => res.json())
         .then((data) => {
+          // aggiorno lo stato aggiungendo questa destinazione MA solo se non è già presente
           setDestinations((prev) => {
             if (prev.find((d) => d.id === data.destination.id)) {
               return prev;

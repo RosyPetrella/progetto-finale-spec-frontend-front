@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
 
 export default function Card({ destination }) {
+  // prendo dal context la funzione per confrontare e l'array delle destinazioni scelte
   const { handleCompare, compareDestinations } = useContext(GlobalContext);
 
+  // controllo se la destinazione è già presente nella lista dei confronti
+  // find restituisce l'oggetto trovato o undefined
   const isSelected = compareDestinations.find((d) => d.id === destination.id);
   return (
     <>
@@ -18,6 +21,10 @@ export default function Card({ destination }) {
             <Link to={`/destinations/${destination.id}`} className="lux-btn">
               Show details
             </Link>
+
+            {/* Bottone compare:
+                - classe dinamica in base allo stato (se è selezionata o no)
+                - onClick chiama handleCompare passando l'oggetto destination */}
             <button
               className={`lux-btn ${
                 isSelected ? "active-compare" : "inactive-compare"
