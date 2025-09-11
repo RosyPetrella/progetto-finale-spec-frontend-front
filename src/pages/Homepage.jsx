@@ -129,7 +129,7 @@ export default function Homepage() {
       {/* HERO */}
       <section className="lux-hero">
         <div className="hero-content">
-          <h1 className="hero-title">LUXURY ESCAPES</h1>
+          <h1 className="hero-title">LUXURY ESCAPE</h1>
           <p className="hero-subtitle">
             Discover tailor-made luxury travel experiences designed for
             discerning explorers. From private islands to curated city escapes,

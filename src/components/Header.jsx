@@ -13,11 +13,11 @@ export default function Header() {
           </Link>
 
           <nav className="nav-links">
-            <NavLink to="/destinationsList" className="nav-link">
-              Destinations
-            </NavLink>
             <NavLink to="/presentation" className="nav-link">
               Our Philosophy
+            </NavLink>
+            <NavLink to="/destinationsList" className="nav-link">
+              Destinations
             </NavLink>
             <NavLink to="/favourites" className="nav-link">
               Favourites
