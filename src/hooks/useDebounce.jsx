@@ -5,7 +5,7 @@ export default function useDebounce(value, delay) {
   // Stato interno che contiene il valore "ritardato"
   const [debounce, setDebounce] = useState(value);
 
-  // Ogni volta che value o delay cambiano
+  // Ogni volta che value cambia
   useEffect(() => {
     // Imposto un timer che aggiornerà lo stato "debounce" dopo `delay`
     const timer = setTimeout(() => {
@@ -15,7 +15,7 @@ export default function useDebounce(value, delay) {
       // Cleanup: se value cambia prima che scada il timer, cancello il precedente
       clearTimeout(timer);
     };
-  }, [value, delay]);
+  }, [value]);
 
   // Ritorno il valore "debounced" da usare nei componenti
   return debounce;

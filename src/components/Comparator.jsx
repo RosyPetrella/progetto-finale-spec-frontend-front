@@ -9,30 +9,38 @@ export default function Comparator() {
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
-    // svuoto la lista all'inizio
-    setDestinations([]);
-    // per ogni destinazione selezionata nel contesto faccio una fetch per ottenere i dati completi dal backend
-    compareDestinations.forEach((dest) => {
-      fetch(`http://localhost:3001/destinations/${dest.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          // aggiorno lo stato aggiungendo questa destinazione MA solo se non è già presente
-          setDestinations((prev) => {
-            if (prev.find((d) => d.id === data.destination.id)) {
-              return prev;
-            }
-            return [...prev, data.destination];
-          });
-        })
-        .catch((err) => console.error(err));
-    });
+    if (compareDestinations.length === 0) {
+      setDestinations([]); // svuoto se non ci sono destinazioni
+      return;
+    }
+
+    Promise.all(
+      compareDestinations.map((dest) =>
+        fetch(`http://localhost:3001/destinations/${dest.id}`)
+          .then((res) => res.json())
+          .then((data) => data.destination)
+      )
+    )
+      .then((results) => {
+        setDestinations(results); // aggiorno in un colpo solo
+      })
+      .catch((err) => console.error(err));
   }, [compareDestinations]);
 
   if (compareDestinations.length === 0) {
     return (
-      <div className="container mt-4">
-        <h2>No destinations selected for comparison</h2>
-        <p>
+      <div
+        className="container mt-4"
+        style={{
+          minHeight: "60vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h2>No destination selected for comparison</h2>
+        <p style={{}}>
           Select destinations to compare by clicking the "Compare" button on the
           cards
         </p>

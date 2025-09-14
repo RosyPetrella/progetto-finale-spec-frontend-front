@@ -21,10 +21,6 @@ export default function Card({ destination }) {
             <Link to={`/destinations/${destination.id}`} className="lux-btn">
               Show details
             </Link>
-
-            {/* Bottone compare:
-                - classe dinamica in base allo stato (se è selezionata o no)
-                - onClick chiama handleCompare passando l'oggetto destination */}
             <button
               className={`lux-btn ${
                 isSelected ? "active-compare" : "inactive-compare"

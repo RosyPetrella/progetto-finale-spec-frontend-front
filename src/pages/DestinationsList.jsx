@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
 import React from "react";
 import Card from "../components/Card";
 import { GlobalContext } from "../Context/context";
@@ -10,13 +10,13 @@ export default function DestinationsList() {
   // Prendo tutte le destinazioni dal contesto globale
   const { allDestinations } = useContext(GlobalContext);
   // Stati locali
-  const [category, setCategory] = useState("");
-  const [isSortOpen, setIsSortOpen] = useState(false);
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearch = useDebounce(searchTerm, 300);
-  const { category: urlCategory } = useParams();
+  const [category, setCategory] = useState(""); // Categoria selezionata
+  const [isSortOpen, setIsSortOpen] = useState(false); // Dropdown ordinamento
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false); // Dropdown categorie
+  const [sortOrder, setSortOrder] = useState("asc"); // Ordinamento alfabetico
+  const [searchTerm, setSearchTerm] = useState(""); // Testo digitato nella ricerca
+  const debouncedSearch = useDebounce(searchTerm, 500); // Custom Hook: ritarda la ricerca di 500ms
+  const { category: urlCategory } = useParams(); // Leggo la categoria dall’URL
 
   // Funzioni per aprire/chiudere i dropdown
   const toggleSortDropDown = () => setIsSortOpen((prev) => !prev);
@@ -26,40 +26,37 @@ export default function DestinationsList() {
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
-  // Imposta ordine di ordinamento e chiude dropdown
+  // Imposta tipo di ordinamento e chiude dropdown
   const handleSort = (order) => {
     setSortOrder(order);
     setIsSortOpen(false);
   };
 
-  // Se c'è una categoria nell'URL, selezionala automaticamente
+  // Se c'è una categoria nell'URL, viene impostata automaticamente nello stato
   useEffect(() => {
     if (urlCategory) {
       setCategory(urlCategory);
     }
   }, [urlCategory]);
 
-  const filteredDestinations = React.useMemo(() => {
+  // Calcolo delle destinazioni filtrate e ordinate
+  const filteredDestinations = useMemo(() => {
     if (!allDestinations) return [];
-
-    // Filtra e ordina le destinazioni in base a categoria, ricerca e ordine
+    // Prima filtro in base a categoria e ricerca
     let filtered = allDestinations.filter((d) => {
       // Se non c'è ricerca né categoria, mostra tutto
       if (!debouncedSearch && !category) return true;
-
-      // Controlla la categoria
+      // Filtro per categoria
       if (category) {
         if (d.category.toLowerCase() !== category.toLowerCase()) return false;
       }
-      // Controlla la ricerca
+      // Filtro per ricerca
       if (debouncedSearch) {
         const searchTerm = debouncedSearch.toLowerCase().trim();
         if (!d.title.toLowerCase().includes(searchTerm)) return false;
       }
-
-      return true;
+      return true; // se passa i controlli, rimane
     });
-
     // Ordinamento alfabetico basato su sortOrder
     return filtered.sort((a, b) => {
       if (sortOrder === "asc") {
@@ -73,8 +70,8 @@ export default function DestinationsList() {
   // Mostra loading se le destinazioni non sono ancora disponibili
   if (!allDestinations) return <div>Loading...</div>;
 
-  //estraggo ogni categoria per evitare che ci siano duplicati
-  const uniqueCategories = React.useMemo(() => {
+  //estraggo ogni categoria per evitare che ci siano duplicati nel dropdown
+  const uniqueCategories = useMemo(() => {
     if (!allDestinations) return [];
 
     const categories = [];
@@ -86,7 +83,7 @@ export default function DestinationsList() {
     return categories;
   }, [allDestinations]);
 
-  // Aggiorna categoria selezionata e chiude dropdown
+  // Quando clicco su una categoria, aggiorno lo stato e chiudo il dropdown
   const handleCategory = (selectedCategory) => {
     setCategory(selectedCategory);
     setIsCategoryOpen(false);
@@ -169,7 +166,17 @@ export default function DestinationsList() {
             </div>
           ))
         ) : (
-          <p className="lux-empty">No destinations found</p>
+          <p
+            className="lux-empty"
+            style={{
+              minHeight: "60vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            No destination found
+          </p>
         )}
       </div>
     </>

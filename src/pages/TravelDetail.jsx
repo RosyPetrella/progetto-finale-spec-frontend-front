@@ -18,7 +18,6 @@ export default function TravelDetail() {
         const res = await fetch(`http://localhost:3001/destinations/${id}`);
         if (!res.ok) throw new Error(`Errore: ${res.status}`);
         const data = await res.json();
-        console.log("Dati ricevuti:", data);
         // Aggiorno lo stato con la destinazione ricevuta
         setDestination(data.destination);
       } catch (error) {
@@ -31,8 +30,20 @@ export default function TravelDetail() {
     fetchDestination(); // Chiamata alla funzione fetch
   }, [id]); // Si ri-esegue se cambia l'id della destinazione
 
-  if (isLoading) return <p>Caricamento in corso...</p>;
-  if (!destination) return <p>Destinazione non trovata</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (!destination)
+    return (
+      <p
+        style={{
+          minHeight: "60vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Destination not found
+      </p>
+    );
 
   // Controllo se la destinazione è già selezionata per il confronto
   const isSelected = compareDestinations.find((d) => d.id === destination.id);
@@ -52,12 +63,12 @@ export default function TravelDetail() {
           </div>
           <div className="detail-info">
             <h2 className="detail-title">{destination.title}</h2>
-            <h4 className="detail-place">{destination.place}</h4>
+            <h4 className="detail-place"> Where: {destination.place}</h4>
             <p className="detail-category">{destination.category}</p>
             <span className="detail-accommodation">
-              {destination.accommodation}
+              Accomodation: {destination.accommodation}
             </span>
-            <span className="detail-price">{destination.price}</span>
+            <span className="detail-price">€ {destination.price}</span>
             <p className="detail-description">{destination.description}</p>
             <button
               className={`lux-btn ${

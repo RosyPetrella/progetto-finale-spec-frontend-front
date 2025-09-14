@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 
 // Creo il contesto globale
 const GlobalContext = createContext();
@@ -15,7 +15,7 @@ function GlobalProvider({ children }) {
     return savedFav ? JSON.parse(savedFav) : [];
   });
 
-  // Fetch delle destinazioni al primo render
+  // Fetch delle destinazioni al mount del componente
   useEffect(() => {
     fetch("http://localhost:3001/destinations")
       .then((res) => res.json())
@@ -24,37 +24,40 @@ function GlobalProvider({ children }) {
         // salvo nello stato globale
         setAllDestinations(data);
       })
-
       .catch((err) => console.error(err));
   }, []);
 
   const handleCompare = (destination) => {
     setCompareDestinations((prev) => {
-      // Se la destinazione è già presente, la rimuovo
+      // Cerco dentro l'array precedente (prev) una destinazione con lo stesso id
       if (prev.find((d) => d.id === destination.id)) {
+        // Se la trovo, la rimuovo e ritorno un nuovo array senza quell'id
         return prev.filter((d) => d.id !== destination.id);
       }
-      // Se ci sono già 2 destinazioni, non aggiungo
-      if (prev.length >= 2) return prev;
-      // Altrimenti aggiungiamo la destinazione
+      // Se non era presente, controllo se ci sono già 2 elementi
+      if (prev.length >= 2) return prev; // Se ci sono già 2 destinazioni non aggiungo nulla (ritorno lo stesso array)
+      // Altrimenti aggiungo la destinazione
       return [...prev, destination];
     });
   };
 
   // Salvataggio preferiti su localStorage
   useEffect(() => {
+    // Ogni volta che lo stato "fav" cambia, salvo l'array aggiornato dei preferiti in localStorage
     localStorage.setItem("fav", JSON.stringify(fav));
   }, [fav]);
 
-  // Gestione preferiti
+  // Funzione che gestisce l'aggiunta o la rimozione dai preferiti
   const handleFav = (destination) => {
     setFav((prev) => {
-      // Se esiste già nei preferiti la rimuovo
+      // Controllo se la destinazione è già presente nei preferiti
       if (prev.find((d) => d.id === destination.id)) {
+        // Se è presente, la rimuovo creando un nuovo array
         const newFav = prev.filter((d) => d.id !== destination.id);
+        // Ritorno il nuovo array senza quella destinazione
         return newFav;
       }
-      // Altrimenti la aggiungo
+      // Se invece non era presente, la aggiungo ai preferiti e creo un nuovo array con i preferiti attuali + la nuova destinazione
       return [...prev, destination];
     });
   };
